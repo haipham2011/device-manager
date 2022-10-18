@@ -1,0 +1,49 @@
+{
+    "version": "1.0",
+    "company": "Insta solution",
+    "location": "Tampere",
+    "system": {
+        "name": "System 1",
+        "code": "IS-SYS001",
+        "image": "https://cdn1.epicgames.com/ue/product/Screenshot/Screenshot3-1920x1080-f4fff1ad07fe8873f58c6de45c9025c5.jpg?resize=1&w=1920",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+    },
+    "devices": [
+        {
+            "id": 0,
+            "code": "IS-M001",
+            "name": "Machine 12",
+            "size": "2x3x4",
+            "weight": 40,
+            "provider": "Metso Outotec",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        },
+        {
+            "id": 1,
+            "code": "IS-M002",
+            "name": "Machine 2",
+            "size": "2x3x4",
+            "weight": 40,
+            "provider": "Metso Outotec",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        },
+        {
+            "id": 2,
+            "code": "IS-M003",
+            "name": "Machine 3",
+            "size": "2x3x4",
+            "weight": 40,
+            "provider": "Metso Outotec",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        },
+        {
+            "id": 3,
+            "code": "IS-M004",
+            "name": "Machine 4",
+            "size": "2x3x4",
+            "weight": 40,
+            "provider": "Metso Outotec",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        }
+    ]
+}
