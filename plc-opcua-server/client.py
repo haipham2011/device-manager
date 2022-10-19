@@ -1,11 +1,16 @@
 import asyncio
 import logging
-
+import requests
 from asyncua import Client
 
 _logger = logging.getLogger('asyncua')
 
+API_HOST = "localhost"
+API_PORT = 8000
+OPC_UA_HOST = "localhost"
+OPC_UA_PORT = 4840
 
+request_url = f"http://{API_HOST}:{API_PORT}/api/dm/v1/messages"
 class SubHandler(object):
     """
     Subscription Handler. To receive events from server for a subscription
@@ -13,15 +18,27 @@ class SubHandler(object):
     Do not do expensive, slow or network operation there. Create another
     thread if you need to do such a thing
     """
-    def datachange_notification(self, node, val, data):
+    async def datachange_notification(self, node, val, data):
         print("New data change event", node, val)
+        id, message_type, start_time, status_code, machine_id = val.split(",")
+        body = {
+            "id": id,
+            "message_type": message_type,
+            "start_time": start_time,
+            "status_code": status_code,
+            "machine_id": machine_id
+        }
+        response = requests.post(url=request_url, json=body, headers={
+            'Content-Type': "application/json"
+        })
+        print(response.json())
 
     def event_notification(self, event):
         print("New event", event)
 
 
 async def main():
-    url = "opc.tcp://localhost:4840/freeopcua/server/"
+    url = f"opc.tcp://{OPC_UA_HOST}:{OPC_UA_PORT}/freeopcua/server/"
     async with Client(url=url) as client:
         _logger.info("Root node is: %r", client.nodes.root)
         _logger.info("Objects node is: %r", client.nodes.objects)
@@ -32,34 +49,17 @@ async def main():
         uri = "http://examples.freeopcua.github.io"
         idx = await client.get_namespace_index(uri)
         _logger.info("index of our namespace is %s", idx)
-        # get a specific node knowing its node id
-        #var = client.get_node(ua.NodeId(1002, 2))
-        #var = client.get_node("ns=3;i=2002")
-        #print(var)
-        #await var.read_data_value() # get value of node as a DataValue object
-        #await var.read_value() # get value of node as a python builtin
-        #await var.write_value(ua.Variant([23], ua.VariantType.Int64)) #set node value using explicit data type
-        #await var.write_value(3.9) # set node value using implicit data type
 
         # Now getting a variable node using its browse path
-        myvar = await client.nodes.root.get_child(["0:Objects", "2:MyObject", "2:MyVariable"])
-        obj = await client.nodes.root.get_child(["0:Objects", "2:MyObject"])
-        _logger.info("myvar is: %r", myvar)
+        message_var = await client.nodes.objects.get_child(["1:MyXMLFolder", "1:MyXMLObject", "1:MyXMLVariable"])
+        _logger.info("myvar is: %r", message_var)
 
         # subscribing to a variable node
         handler = SubHandler()
         sub = await client.create_subscription(10, handler)
-        handle = await sub.subscribe_data_change(myvar)
+        handle = await sub.subscribe_data_change(message_var)
         await asyncio.sleep(0.1)
-
-        # we can also subscribe to events from server
-        await sub.subscribe_events()
-        # await sub.unsubscribe(handle)
-        # await sub.delete()
-
-        # calling a method on server
-        res = await obj.call_method("2:multiply", 3, "klk")
-        _logger.info("method result is: %r", res)
+        
         while True:
             await asyncio.sleep(1)
 
