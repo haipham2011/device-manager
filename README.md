@@ -61,6 +61,13 @@ pnpm run dev
 <img src="images/Instruction.gif"/>
 
 ## Architecture
+
+### Backend side
+The message is streamed from OPC UA server to a Python client whenever a new update happened in OPC UA sever. This client will insert the message to message database by Restful communication to web service (FastAPI). The web service will trigger a message to web client (React) by websocket and the client will fetch newest messages from database.
+
+### Frontend side
+User can get all information of the machine by make Restful requests to web service. The web service will read the JSON file and return the values to client.
+
 <img src="images/Architecture.png"/>
 
 
