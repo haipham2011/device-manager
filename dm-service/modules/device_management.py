@@ -1,6 +1,6 @@
 from models.device import Device
 import json
-
+import csv
 
 class DeviceConf(object):
     def __init__(self, file_path) -> None:
@@ -60,3 +60,24 @@ class DeviceConf(object):
             outfile.write(json.dumps(device_conf))
         
         return self.get_devices()
+
+    def import_devices(self, csv_file):
+        device_conf = self.get_all_conf()
+        rows = csv.DictReader(csv_file, delimiter=',', quotechar='|')
+        devices = []
+
+        for row in rows:
+            new_device = json.dumps(row)
+            new_device_json = json.loads(new_device)
+            new_device_json["id"] = int(new_device_json["id"])
+            devices.append(new_device_json)
+
+        if len(devices) > 0:
+            device_conf["devices"] = devices
+
+        with open(self.__file_path, "w") as outfile:
+            outfile.write(json.dumps(device_conf))
+
+        return self.get_devices()
+
+
