@@ -13,7 +13,7 @@ import { Provider } from 'react-redux'
 import { setupStore } from './store';
 import { increment } from './reducer/messageSlice';
 import SettingsPage from './routes/SettingsPage';
-import { WS_ADDRESS } from './Utils';
+import { WS_ADDRESS } from './utils';
 
 const store = setupStore()
 const router = createBrowserRouter([

@@ -19,22 +19,22 @@ const Modal = ({
       <div className="flex h-screen justify-center items-center ">
         {<div className="flex-col justify-center bg-white py-12 px-24 border-4 rounded-xl ">
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Code:</b> {data["code"]}
+                <b>Code:</b> {data.code}
               </p>
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Name:</b> {data["name"]}
+                <b>Name:</b> {data.name}
               </p>
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Size:</b> {data["size"]}
+                <b>Size:</b> {data.size}
               </p>
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Provider:</b> {data["provider"]}
+                <b>Provider:</b> {data.provider}
               </p>
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Weight:</b> {data["weight"]}
+                <b>Weight:</b> {data.weight}
               </p>
               <p className="mb-4 text-lg font-normal text-gray-500">
-                <b>Description:</b> {data["description"]}
+                <b>Description:</b> {data.description}
               </p>
           <div className="flex">
             <button

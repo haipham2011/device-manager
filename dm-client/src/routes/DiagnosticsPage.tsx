@@ -3,6 +3,7 @@ import { useGetMessagesQuery } from "../services/deviceManager";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Loading from "../components/Loading";
+import { DiagMessage } from "../models/diagnostics";
 
 export default function DiagnosticsPage() {
   const { data, isLoading, refetch } = useGetMessagesQuery("");
@@ -38,7 +39,7 @@ export default function DiagnosticsPage() {
             </tr>
           </thead>
           <tbody>
-            {data && data["messages"] && data["messages"].map((element) => (
+            {data && data.messages && data.messages.map((element: DiagMessage) => (
               <tr className="bg-white" key={element.id + "-" + element.machineId}>
                 <td className="py-4 px-6">{element.id}</td>
                 <td className="py-4 px-6">{element.type}</td>

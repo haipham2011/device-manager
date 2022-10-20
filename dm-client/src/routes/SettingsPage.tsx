@@ -6,18 +6,20 @@ import Loading from "../components/Loading";
 export default function SettingsPage() {
   const [uploadFile, { isLoading: updating, isSuccess: saved }] =
     useUploadConfigFileMutation();
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("file", file as unknown as File);
     await uploadFile(formData);
   };
 
-  const handleOnChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return;
+    const file = event.target.files[0]
+    setFile(file);
   };
 
   useEffect(() => {
