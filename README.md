@@ -20,17 +20,18 @@ The purpose of this project is to build device management system. Basically, use
 
 ## Getting started
 
+### Without Docker
+
 1. Start database server by running
 ```
-docker-compose up -d
+docker-compose up -d cassandra
 ```
 
 2. Start OPCUA server and client by running
 ```
 pip install -r requirements.txt
 cd plc-opc-ua-server
-python server.py
-python client.py
+./run.sh
 ```
 
 3. Start web server 
@@ -55,6 +56,25 @@ VITE_SOCKET_ID=1234
 cd dm-client
 pnpm install
 pnpm run dev
+```
+
+### With docker
+
+1. Build dm-client by this command
+```
+cd dm-client
+pnpm run build
+```
+
+2. Start data feed from OPCUA
+```
+cd plc-opcua-server
+./run.sh
+```
+
+3. Start Web UI, service and database
+```
+docker-compose up -d
 ```
 
 ## How to use the app
