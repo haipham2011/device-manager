@@ -13,7 +13,7 @@ from config import LogConfig
 import logging
 
 dictConfig(LogConfig().dict())
-logger = logging.getLogger("mycoolapp")
+logger = logging.getLogger("dm-service")
 
 API_VERSION = 1
 API_PREFIX = f"api/dm/v{API_VERSION}"
@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 device_config = DeviceConf("./public/device_conf.json")
-messageDb = MessageDb('127.0.0.1', 9042, {
+messageDb = MessageDb('cassandra', 9042, {
                       'username': 'cassandra', 'password': 'cassandra'})
 
 class ConnectionManager:
